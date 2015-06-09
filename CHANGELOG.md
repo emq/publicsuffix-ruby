@@ -1,6 +1,45 @@
 # Changelog
 
 
+#### Release 1.5.1
+
+- FIXED: Ignore case for parsing and validating (GH-62)
+
+- CHANGED: Updated definitions.
+
+
+#### Release 1.5.0
+
+- CHANGED: Dropped support for Ruby < 2.0
+
+- CHANGED: Updated definitions.
+
+
+#### Release 1.4.6
+
+- CHANGED: Updated definitions.
+
+
+#### Release 1.4.5
+
+- CHANGED: Updated definitions.
+
+
+#### Release 1.4.4
+
+- CHANGED: Updated definitions.
+
+
+#### Release 1.4.3
+
+- CHANGED: Updated definitions.
+
+
+#### Release 1.4.2
+
+- CHANGED: Updated definitions.
+
+
 #### Release 1.4.1
 
 - CHANGED: Updated definitions.

@@ -1,11 +1,10 @@
-#--
+#
 # Public Suffix
 #
 # Domain name parser based on the Public Suffix List.
 #
-# Copyright (c) 2009-2014 Simone Carletti <weppos@weppos.net>
-#++
-
+# Copyright (c) 2009-2015 Simone Carletti <weppos@weppos.net>
+#
 
 require 'public_suffix/domain'
 require 'public_suffix/version'
@@ -13,13 +12,7 @@ require 'public_suffix/errors'
 require 'public_suffix/rule'
 require 'public_suffix/list'
 
-
 module PublicSuffix
-
-  NAME            = "Public Suffix"
-  GEM             = "public_suffix"
-  AUTHORS         = ["Simone Carletti <weppos@weppos.net>"]
-
 
   # Parses +domain+ and returns the
   # {PublicSuffix::Domain} instance.
@@ -34,15 +27,15 @@ module PublicSuffix
   # @example Parse a valid domain
   #   PublicSuffix.parse("google.com")
   #   # => #<PublicSuffix::Domain ...>
-  # 
+  #
   # @example Parse a valid subdomain
   #   PublicSuffix.parse("www.google.com")
   #   # => #<PublicSuffix::Domain ...>
-  # 
+  #
   # @example Parse a fully qualified domain
   #   PublicSuffix.parse("google.com.")
   #   # => #<PublicSuffix::Domain ...>
-  # 
+  #
   # @example Parse a fully qualified domain (subdomain)
   #   PublicSuffix.parse("www.google.com.")
   #   # => #<PublicSuffix::Domain ...>
@@ -62,7 +55,8 @@ module PublicSuffix
   #   doesn't allow +domain+.
   #
   def self.parse(domain, list = List.default)
-    rule = list.find(domain)
+    domain = domain.to_s.downcase
+    rule   = list.find(domain)
 
     if rule.nil?
       raise DomainInvalid, "`#{domain}' is not a valid domain"
@@ -104,7 +98,7 @@ module PublicSuffix
   #   # => true
   #
   # @example Validate a not-assigned domain
-  #   PublicSuffix.valid?("example.zip")
+  #   PublicSuffix.valid?("example.qqq")
   #   # => false
   #
   # @example Validate a not-allowed domain
@@ -112,7 +106,7 @@ module PublicSuffix
   #   # => false
   #   PublicSuffix.valid?("www.example.do")
   #   # => true
-  # 
+  #
   # @example Validate a fully qualified domain
   #   PublicSuffix.valid?("google.com.")
   #   # => true
@@ -124,7 +118,8 @@ module PublicSuffix
   #   # => false
   #
   def self.valid?(domain)
-    rule = List.default.find(domain)
+    domain = domain.to_s.downcase
+    rule   = List.default.find(domain)
     !rule.nil? && rule.allow?(domain)
   end
 
